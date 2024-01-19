@@ -7,29 +7,32 @@ import React from 'react'
 function Catagory() {
     return (
         <List>
-        <SLink to={"/cuisine/American"}>
-            <div>
-                <FaHamburger />
-                <h4>American</h4>
-            </div>
+            <SLink to={"/cuisine/American"}>
+                <div>
+                    <FaHamburger />
+                    <h4>American</h4>
+                </div>
             </SLink>
+
             <SLink to={"/cuisine/Italian"}>
-            <div>
-                <FaPizzaSlice />
-                <h4>Italian</h4>
-            </div>
+                <div>
+                    <FaPizzaSlice />
+                    <h4>Italian</h4>
+                </div>
             </SLink>
+
             <SLink to={"/cuisine/Thai"}>
-            <div>
-                <GiNoodles />
-                <h4>Thai</h4>
-            </div>
+                <div>
+                    <GiNoodles />
+                    <h4>Thai</h4>
+                </div>
             </SLink>
+
             <SLink to={"/cuisine/Japanese"}>
-            <div>
-                <GiChopsticks />
-                <h4>Japanese</h4>
-            </div>
+                <div>
+                    <GiChopsticks />
+                    <h4>Japanese</h4>
+                </div>
             </SLink>
         </List>
     )
@@ -54,27 +57,22 @@ const SLink = styled(NavLink)`
     height: 6rem;
     curser: pointer;
     transform: scale(0.9);
-
     h4 {
         color: white;
         font-size: 0.8remrem;
     }
-
     svg {
         font-size: 1.5rem;
         color: white;
     }
     &.active {
         background: linear-gradient(to right, #f27121, #e94057);
-
         svg {
             color: white;
         }
-
         h4 {
             color: white;
         }
-
     }
 `
 
