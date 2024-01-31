@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Splide, SplideSlide} from '@splidejs/react-splide';
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { Link } from "react-router-dom";
 
@@ -15,31 +15,34 @@ function Veggie() {
       setVeggie(JSON.parse(check));
     } else {
       const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=10&tags=vegetarian`);
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=10&tags=vegetarian`
+      );
       const data = await api.json();
       localStorage.setItem("veggie", JSON.stringify(data.recipes));
       setVeggie(data.recipes);
       console.log(data.recipes);
     }
-  }
+  };
 
-  return ( 
+  return (
     <div>
-          <Wrapper>
-            <h1>Veggie Recipes</h1>
-            <Splide options = {{
+      <Wrapper>
+        <h1>Veggie Recipes</h1>
+        <Splide
+          options={{
             perPage: 3,
             arrows: false,
             gap: "5rem",
             pagination: false,
             drag: "free",
             autoplay: true,
-            }}>
-            {veggie.map((recipe) => {
-              return (
-                <SplideSlide key={recipe.id}>
+          }}
+        >
+          {veggie.map((recipe) => {
+            return (
+              <SplideSlide key={recipe.id}>
                 <Card>
-                    <Link to={"/recipe/" + recipe.id}>
+                  <Link to={"/recipe/" + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
@@ -73,7 +76,7 @@ const Card = styled.div`
     object-fit: cover;
   }
 
-  p{
+  p {
     position: absolute;
     z-index: 10;
     left: 50%;
@@ -97,6 +100,6 @@ const Gradient = styled.div`
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, #000000 0%, #000000 1
-`
+`;
 
 export default Veggie;

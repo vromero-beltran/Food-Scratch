@@ -1,44 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 function Cuisine() {
+  const [cuisine, setCuisine] = useState([]);
+  let params = useParams();
+  const getCuisine = async (name) => {
+    const data = await fetch(
+      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+    );
+    const recipes = await data.json();
+    setCuisine(recipes.results);
+  };
+  useEffect(() => {
+    getCuisine(params.type);
+  }, [params.type]);
+  const variants = {
+    animate: { opacity: 1 },
+    initial: { opacity: 0 },
+    exit: { opacity: 0 },
+    transition: { duration: 0.5 },
+  };
 
-    const [cuisine, setCuisine] = useState([]);
-    let params = useParams();
-    const getCuisine = async (name) => {
-        const data = await fetch(
-            `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+  return (
+    <Grid
+      animate={variants.animate}
+      initial={variants.initial}
+      exit={variants.exit}
+    >
+      {cuisine.map((item) => {
+        return (
+          <Card key={item.id}>
+            <Link to={`/recipe/${item.id}`}>
+              <img src={item.image} alt="" />
+              <h4>{item.title}</h4>
+            </Link>
+          </Card>
         );
-        const recipes = await data.json();
-        setCuisine(recipes.results);
-    }
-    useEffect(() => {
-        getCuisine(params.type);
-    }, [params.type]);
-    // const variants = {
-    //     animate: { opacity:  1},
-    //     initial: { opacity: 0 },
-    //     exit: { opacity: 0 },
-    //     transition: { duration: 0.5 }
-    // };
-
-    return (
-        <Grid>
-            {cuisine.map((item) => {
-                return(
-                    <Card key={item.id}>
-                    <Link to={`/recipe/${item.id}`}>
-                            <img src={item.image} alt="" />
-                            <h4>{item.title}</h4>
-                        </Link>
-                    </Card>
-                )
-            })}
-        </Grid>
-    )
-};
+      })}
+    </Grid>
+  );
+}
 
 const Grid = styled(motion.div)`
     display: grid
@@ -60,4 +63,4 @@ const Card = styled.div`
     }
 `;
 
-export default Cuisine
+export default Cuisine;

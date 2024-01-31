@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import React from 'react'
+import React from "react";
 
 function Recipe() {
   let params = useParams();
@@ -75,7 +75,7 @@ const DetailWrapper = styled.div`
   li {
     font-size: 1.2rem;
     line-height: 2.5rem;
-}
+  }
   ul {
     margin-top: 2rem;
   }
@@ -88,9 +88,9 @@ const Button = styled.button`
   border: 2px solid black;
   margin-right: 2rem;
   font-weight: 600;
-`
+`;
 const Info = styled.div`
-  marging-left: 10rem
-`
+  marging-left: 10rem;
+`;
 
-export default Recipe
+export default Recipe;
