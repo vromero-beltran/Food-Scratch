@@ -3,32 +3,33 @@ import { GiNoodles, GiChopsticks } from "react-icons/gi";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import React from "react";
+import "./Catagory.css";
 
 function Catagory() {
   return (
-    <List>
-      <SLink to={"/cuisine/American"}>
+    <List className="List">
+      <SLink className="SLink" to={"/cuisine/American"}>
         <div>
           <FaHamburger />
           <h4>American</h4>
         </div>
       </SLink>
 
-      <SLink to={"/cuisine/Italian"}>
+      <SLink className="SLink" to={"/cuisine/Italian"}>
         <div>
           <FaPizzaSlice />
           <h4>Italian</h4>
         </div>
       </SLink>
 
-      <SLink to={"/cuisine/Thai"}>
+      <SLink className="SLink" to={"/cuisine/Thai"}>
         <div>
           <GiNoodles />
           <h4>Thai</h4>
         </div>
       </SLink>
 
-      <SLink to={"/cuisine/Japanese"}>
+      <SLink className="SLink" to={"/cuisine/Japanese"}>
         <div>
           <GiChopsticks />
           <h4>Japanese</h4>
@@ -55,7 +56,7 @@ const SLink = styled(NavLink)`
   background: linear-gradient(35deg, #494949, #313131);
   width: 6rem;
   height: 6rem;
-  curser: pointer;
+  cursor: pointer;
   transform: scale(0.9);
   h4 {
     color: white;
