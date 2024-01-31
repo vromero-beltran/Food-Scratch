@@ -5,14 +5,15 @@ import Search from "./components/Search";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GiKnifeFork } from "react-icons/gi";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav>
+        <Nav className="nav">
           <GiKnifeFork />
-          <Logo to={"/"}>Home Scratch</Logo>
+          <Logo className="logo" to={"/"}>Home Scratch</Logo>
         </Nav>
         <Search />
         <Catagory />

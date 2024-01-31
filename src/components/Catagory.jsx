@@ -3,7 +3,7 @@ import { GiNoodles, GiChopsticks } from "react-icons/gi";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import React from "react";
-import "./Catagory.css";
+import "./CSS/Catagory.css";
 
 function Catagory() {
   return (

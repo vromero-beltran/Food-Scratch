@@ -1,0 +1,16 @@
+.logo {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+font-family: "Montserrat", sans-serif;
+}
+
+.nav {
+  padding: 4rem 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    font-size: 2rem;
+  }
+}
