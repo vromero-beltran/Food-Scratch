@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import React from "react";
+import "./css/Recipe.css";
 
 function Recipe() {
   let params = useParams();
@@ -21,13 +22,13 @@ function Recipe() {
   }, [params.name]);
 
   return (
-    <DetailWrapper>
+    <DetailWrapper className="detail-wrapper">
       <div>
         <h2>{details.title}</h2>
         <img src={details.image} alt="" />
       </div>
 
-      <Info>
+      <Info className="info">
         <Button
           className={activeTab === "instructions" ? "active" : ""}
           onClick={() => setActiveTab("instructions")}
@@ -90,7 +91,7 @@ const Button = styled.button`
   font-weight: 600;
 `;
 const Info = styled.div`
-  marging-left: 10rem;
+  margin-left: 10rem;
 `;
 
 export default Recipe;
