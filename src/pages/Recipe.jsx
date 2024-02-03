@@ -25,7 +25,7 @@ function Recipe() {
     <DetailWrapper className="detail-wrapper">
       <div>
         <h2>{details.title}</h2>
-        <img src={details.image} alt="" />
+        <img className="recipe-img" src={details.image} alt="" />
       </div>
 
       <Info className="info">

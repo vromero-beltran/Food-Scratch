@@ -45,7 +45,7 @@ function Popular() {
                 <div className="card">
                   <Link to={"/recipe/" + recipe.id}>
                     <p>{recipe.title}</p>
-                    <img src={recipe.image} alt={recipe.title} />
+                    <img className="popular-img" src={recipe.image} alt={recipe.title} />
                     <Gradient className="gradient" />
                   </Link>
                 </div>

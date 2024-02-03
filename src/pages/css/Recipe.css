@@ -33,3 +33,8 @@ button {
 .info {
   margin-left: 10rem;
 }
+
+.recipe-img {
+  width: 500px;
+  height: auto;
+}
