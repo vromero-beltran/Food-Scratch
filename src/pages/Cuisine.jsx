@@ -36,7 +36,7 @@ useEffect(() => {
       initial={variants.initial}
       exit={variants.exit}
     >
-      {cuisine.map((item) => {
+      {cuisine && cuisine.length > 0 && cuisine.map((item) => {
         return (
           <Card className="card" key={item.id}>
             <Link to={`/recipe/${item.id}`}>
