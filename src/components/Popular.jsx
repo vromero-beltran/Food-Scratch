@@ -44,7 +44,7 @@ function Popular() {
               <SplideSlide key={recipe.id}>
                 <div className="card">
                   <Link to={"/recipe/" + recipe.id}>
-                    <p>{recipe.title}</p>
+                    <p className="recipe-title">{recipe.title}</p>
                     <img className="popular-img" src={recipe.image} alt={recipe.title} />
                     <Gradient className="gradient" />
                   </Link>
