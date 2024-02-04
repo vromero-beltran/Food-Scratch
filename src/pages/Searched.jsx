@@ -15,11 +15,12 @@ function Searched() {
     setSearchedRecipes(recipes.results);
   };
   useEffect(() => {
+    console.log(params.search);
     getSearched(params.search);
   }, [params.search]);
   return (
     <Grid>
-      {searchedRecipes.map((item) => {
+      {searchedRecipes && searchedRecipes.length > 0 && searchedRecipes.map((item) => {
         return (
           <Card key={item.id}>
             <Link to={`/recipe/${item.id}`}>
