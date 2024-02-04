@@ -20,7 +20,8 @@ function Searched() {
   }, [params.search]);
   return (
     <Grid>
-      {searchedRecipes && searchedRecipes.length > 0 && searchedRecipes.map((item) => {
+      {searchedRecipes && Array.isArray(searchedRecipes) && searchedRecipes.map((item) => {
+        console.log(item.id);
         return (
           <Card key={item.id}>
             <Link to={`/recipe/${item.id}`}>
