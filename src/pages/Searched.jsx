@@ -3,29 +3,35 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import useSWR from "swr";
+import "./css/Searched.css"
 
 function Searched() {
-  const [searchedRecipes, setSearchedRecipes] = useState([]);
   let params = useParams();
-  const getSearched = async (name) => {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
-    );
-    const recipes = await data.json();
-    setSearchedRecipes(recipes.results);
+  const fetcher = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.results;
   };
-  useEffect(() => {
-    console.log(params.search);
-    getSearched(params.search);
-  }, [params.search]);
+
+  const { data: searchedRecipes, error } = useSWR(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${params.search}`, fetcher
+  );
+
+  if (error) {
+    return <div>failed to load</div>;
+  }
+  if (!searchedRecipes) {
+    return <div>loading...</div>;
+  }
   return (
     <Grid>
-      {searchedRecipes && Array.isArray(searchedRecipes) && searchedRecipes.map((item) => {
+      {searchedRecipes.map((item) => {
         console.log(item.id);
         return (
           <Card key={item.id}>
             <Link to={`/recipe/${item.id}`}>
-              <img src={item.image} alt="" />
+              <img className="img" src={item.image} alt="" />
               <h4>{item.title}</h4>
             </Link>
           </Card>
