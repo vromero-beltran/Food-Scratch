@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./css/Cuisine.css"
+import useSWR from "swr";
 
 function Cuisine() {
-  const [cuisine, setCuisine] = useState([]);
   let params = useParams();
-  const getCuisine = async (name) => {
-    try {
-    const data = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+  const fetcher = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.results;
+  };
+
+  const { data: cuisine, error } = useSWR(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${params.type}`, fetcher
     );
-    const recipes = await data.json();
-    setCuisine(recipes.results);
-  } catch (error) {
-    console.log(error);
-    console.error("error fetching cuisine:", error);
-  }
-}
-useEffect(() => {
-  getCuisine(params.type);
-}, [params.type]);
+    if (error) {
+      return <div>failed to load</div>;
+    }
+    if (!cuisine) {
+      return <div>loading...</div>;
+    }
   const variants = {
     animate: { opacity: 1 },
     initial: { opacity: 0 },
@@ -36,7 +35,7 @@ useEffect(() => {
       initial={variants.initial}
       exit={variants.exit}
     >
-      {cuisine && cuisine.length > 0 && cuisine.map((item) => {
+      {cuisine.map((item) => {
         return (
           <Card className="card" key={item.id}>
             <Link to={`/recipe/${item.id}`}>
