@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "./css/Search.css";
+import "./Search.css";
 
 function Search() {
   const [input, setInput] = useState("");
